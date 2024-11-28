@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Kategori;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -13,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Data User
         User::create([
             'nama' => 'Administrator',
             'email' => 'admin@gmail.com',
@@ -44,6 +47,23 @@ class DatabaseSeeder extends Seeder
             'status' => 0,
             'hp' => '081234567892',
             'password' => bcrypt('restuword')
+        ]);
+
+        // Data Kategori
+        Kategori::create([
+            'nama_kategori' => 'Brownies',
+        ]);
+        Kategori::create([
+            'nama_kategori' => 'Combro',
+        ]);
+        Kategori::create([
+            'nama_kategori' => 'Dawet',
+        ]);
+        Kategori::create([
+            'nama_kategori' => 'Mochi',
+        ]);
+        Kategori::create([
+            'nama_kategori' => 'Wingko',
         ]);
     }
 }

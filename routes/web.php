@@ -3,6 +3,7 @@
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,6 @@ Route::resource('backend/user', UserController::class, ['as' => 'backend'])->mid
 
 // Menambahkan route ke KategoriController
 Route::resource('backend/kategori', KategoriController::class, ['as' => 'backend'])->middleware('auth');
+
+// Menambahkan route ke ProdukController
+Route::resource('backend/produk', ProdukController::class, ['as' => 'backend'])->middleware('auth');
