@@ -47,7 +47,7 @@
                                             </a>
                                             <a href="{{ route('backend.produk.show', $row->id) }}" title="Tampilkan Data">
                                                 <button type="button" class="btn btn-warning btn-sm">
-                                                    <i class="far fa-plus"></i>Gambar
+                                                    <i class="fas fa-plus"></i>Gambar
                                                 </button>
                                             </a>
 

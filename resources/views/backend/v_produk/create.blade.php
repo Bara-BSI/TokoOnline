@@ -9,12 +9,14 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ $judul }}</h4>
                             <div class="row">
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="foto">Foto</label>
+                                        <img class="foto-preview">
                                         <input id="foto" class="form-control @error('foto')
                                             is-invalid
-                                        @enderror" type="file" name="foto">
+                                        @enderror" type="file" name="foto" onchange="previewFoto()">
                                         @error('foto')
                                             <div class="invalid-feedback alert-danger">
                                                 {{ $message }}
@@ -22,6 +24,7 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label>Kategori</label>
@@ -49,8 +52,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="detail">Detail</label>
-                                        <textarea name="detail" id="detail" class="form-control @error('detail')
+                                        <label for="ckeditor">Detail</label>
+                                        <textarea name="detail" id="ckeditor" class="form-control @error('detail')
                                             is-invalid
                                         @enderror">
                                             {{ old('detail') }}
@@ -94,6 +97,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="border-top">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-primary">Simpan</button>

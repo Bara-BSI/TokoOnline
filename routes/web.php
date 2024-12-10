@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('backend.v_login.login');
 });
 
 Route::get('/backend/beranda', [BerandaController::class, 'berandaBackend'])->name('backend.beranda')->middleware('auth');
@@ -36,3 +36,8 @@ Route::resource('backend/kategori', KategoriController::class, ['as' => 'backend
 
 // Menambahkan route ke ProdukController
 Route::resource('backend/produk', ProdukController::class, ['as' => 'backend'])->middleware('auth');
+
+// Route untuk menambah foto
+Route::post('foto-produk/store', [ProdukController::class, 'storeFoto'])->name('backend.foto_produk.store')->middleware('auth');
+// Route untuk menghapus foto
+Route::delete('foto-produk/{id}', [ProdukController::class, 'destroyFoto'])->name('backend.foto_produk.destroy')->middleware('auth');

@@ -195,8 +195,8 @@
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic d-flex align-items-center" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @if (Auth::user()->foto)
                                 <img src="{{ asset('storage/img-user/' . Auth::user()->foto) }}" alt="user" class="rounded-circle" width="31">
                                 @else
@@ -429,7 +429,30 @@
                         });
                 }    
             });
-        })
+        });
+    </script>
+    <script>
+        // previewFoto
+        function previewFoto() {
+            const foto = document.querySelector('input[name="foto"]');
+            const fotoPreview = document.querySelector('.foto-preview');
+            fotoPreview.style.display = 'block';
+            const fotoReader = new FileReader();
+            fotoReader.readAsDataURL(foto.files[0]);
+            fotoReader.onload = function(fotoEvent) {
+                fotoPreview.src = fotoEvent.target.result;
+                fotoPreview.style.width = '100%';
+            }
+        }
+    </script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    {{-- <script src="htttps://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script> --}}
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#ckeditor'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
 </body>
