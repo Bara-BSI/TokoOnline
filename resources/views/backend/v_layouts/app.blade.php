@@ -256,6 +256,25 @@
                                 <li class="sidebar-item"><a href="{{ route('backend.produk.index') }}" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Produk </span></a></li>
                             </ul>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="javascript:voind(0)" class="sidebar-link has-arrow waves-effect waves-dark" aria-expanded="false">
+                                <i class="mdi mdi-receipt"></i><span class="hide-menu">Laporan</span>
+                            </a>
+                            <ul class="collapse first-level" aria-expanded="false">
+                                <li class="sidebar-item">
+                                    <a href="{{ route('backend.laporan.formuser') }}" class="sidebar-link">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                        <span class="hide-menu">User</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="{{ route('backend.laporan.formproduk') }}" class="sidebar-link">
+                                        <i class="mdi mdi-chevron-right"></i>
+                                        <span class="hide-menu">Produk</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-elements.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Elements</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
