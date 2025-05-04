@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('backend.v_login.login');
+    return redirect()->route('beranda');
 });
 
 Route::get('/backend/beranda', [BerandaController::class, 'berandaBackend'])->name('backend.beranda')->middleware('auth');
@@ -49,3 +49,14 @@ Route::post('backend/laporan/cetakuser', [UserController::class, 'cetekUser'])->
 // Route untuk laporan produk
 Route::get('backend/laporan/formproduk', [ProdukController::class, 'formProduk'])->name('backend.laporan.formproduk')->middleware('auth');
 Route::post('backend/laporan/cetakproduk', [ProdukController::class, 'cetakProduk'])->name('backend.laporan.cetakproduk')->middleware('auth');
+
+Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
+
+// detail produk
+Route::get('/produk/detail/{id}', [ProdukController::class, 'detail'])->name('produk.detail');
+
+// produkKategori
+Route::get('/produk/kategori/{id}', [ProdukController::class, 'produkKategori'])->name('produk.kategori');
+
+// produkAll
+Route::get('/produk/all', [ProdukController::class, 'produkAll'])->name('produk.all');
