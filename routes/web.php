@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
@@ -60,3 +61,10 @@ Route::get('/produk/kategori/{id}', [ProdukController::class, 'produkKategori'])
 
 // produkAll
 Route::get('/produk/all', [ProdukController::class, 'produkAll'])->name('produk.all');
+
+// API Google
+Route::get('/auth/redirect', [CustomerController::class, 'redirect'])->name('auth.redirect');
+Route::get('/auth/google/callback', [CustomerController::class, 'callback'])->name('auth.callback');
+
+// Logout
+Route::post('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
