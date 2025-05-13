@@ -119,7 +119,7 @@
                                 <label for="pos">Kode Pos</label>
                                 <input type="text" name="pos" id="pos" value="{{ old('pos', $edit->user->pos) }}" class="form-control @error('pos')
                                     is-invalid
-                                @enderror" placeholder="Masukkan NomorResi">
+                                @enderror" placeholder="Masukkan Kode Pos">
                                 @error('pos')
                                     <span class="invalid-feedback alert-danger" role="alert">
                                         {{ $message }}
