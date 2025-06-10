@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -75,10 +76,13 @@
                         <!-- Cart -->
                         <li class="header-cart dropdown default-dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <div class="header-btns-icon">
-                                    <i class="fa fa-shopping-cart"></i>
-                                </div>
-                                <strong class="text-uppercase">Keranjang</strong>
+                                <a href="{{ route('order.cart') }}">
+                                    <div class="header-btns-icon">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </div>
+                                    <strong class="text-uppercase">Keranjang</strong>
+                                </a>
+                                
                             </a>
                         </li>
                         <!-- /Cart -->

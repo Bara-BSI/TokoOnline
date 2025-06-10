@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo e(asset('image/icon_univ_bsi.png')); ?>">
+    <title>tokoonline</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="<?php echo e(asset('frontend/css/bootstrap.min.css')); ?>">
+
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="<?php echo e(asset('frontend/css/slick.css')); ?>">
+    <link type="text/css" rel="stylesheet" href="<?php echo e(asset('frontend/css/slick-theme.css')); ?>">
+
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="<?php echo e(asset('frontend/css/nouislider.min.css')); ?>">
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/css/font-awesome.min.css')); ?>">
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="<?php echo e(asset('frontend/css/style.css')); ?>">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+    <?php
+        $kategori = DB::table('kategori')->orderBy('nama_kategori', 'asc')->get();
+    ?>
+    <!-- HEADER -->
+    <header>
+        <!-- top Header -->
+        <div id="top-header">
+            <div class="container">
+                <div class="pull-left">
+                    <span>Selamat datang di toko online</span>
+                </div>
+            </div>
+        </div>
+        <!-- /top Header -->
+
+        <!-- header -->
+        <div id="header">
+            <div class="container">
+                <div class="pull-left">
+                    <!-- Logo -->
+                    <div class="header-logo">
+                        <a class="logo" href="#">
+                            <img src="<?php echo e(asset('image/logo.png')); ?>" alt="">
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+
+                    <!-- Search -->
+
+                    <!-- /Search -->
+                </div>
+                <div class="pull-right">
+                    <ul class="header-btns">
+                        <!-- Cart -->
+                        <li class="header-cart dropdown default-dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <a href="<?php echo e(route('order.cart')); ?>">
+                                    <div class="header-btns-icon">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </div>
+                                    <strong class="text-uppercase">Keranjang</strong>
+                                </a>
+                                
+                            </a>
+                        </li>
+                        <!-- /Cart -->
+
+                        
+                        <!-- Account -->
+                        <?php if(Auth::check()): ?>
+                            <li class="header-account dropdown default-dropdown">
+                                <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                                    <div class="header-btns-icon">
+                                        <i class="fa fa-user-o"></i>
+                                    </div>
+                                    <strong class="text-uppercase">
+                                        <?php echo e(Auth::user()->nama); ?>
+
+                                        <i class="fa fa-caret-down"></i>
+                                    </strong>
+                                </div>
+                                <ul class="custom-menu">
+                                    <li><a href="<?php echo e(route('customer.akun', ['id' => Auth::user()->id])); ?>"><i class="fa fa-user-o"></i> Akun Saya</a></li>
+                                    <li><a href="#"><i class="fa fa-check"></i> History</a></li>
+                                    <li>
+                                        <a href="#" onclick="event.preventDefault(); document.getElementById('keluar-app').submit();">
+                                            <i class="fa fa-power-off"></i> Keluar
+                                        </a>
+                                        
+                                        <form action="<?php echo e(route('customer.logout')); ?>" method="post" id="keluar-app" class="d-none">
+                                            <?php echo csrf_field(); ?>
+                                        </form>
+                                        
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php else: ?>
+                            <li class="header-account dropdown default-dropdown">
+                                <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                                    <div class="header-btns-icon">
+                                        <i class="fa fa-user-o"></i>
+                                    </div>
+                                    <strong class="text-uppercase">
+                                        Akun Saya
+                                        <i class="fa fa-caret-down"></i>
+                                    </strong>
+                                </div>
+                                <a href="<?php echo e(route('auth.redirect')); ?>" class="text-upper">Login</a>
+                            </li>
+                        <?php endif; ?>
+                        <!-- /Account -->
+
+                        <!-- Mobile nav toggle-->
+                        <li class="nav-toggle">
+                            <button class="nav-toggle-btn main-btn icon-btn"><i class="fa fa-bars"></i></button>
+                        </li>
+                        <!-- / Mobile nav toggle -->
+                    </ul>
+                </div>
+            </div>
+            <!-- header -->
+        </div>
+        <!-- container -->
+    </header>
+    <!-- /HEADER -->
+
+    <!-- NAVIGATION -->
+    <div id="navigation">
+        <!-- container -->
+        <div class="container">
+            <div id="responsive-nav">
+                <?php
+                    $kategori = DB::table('kategori')->orderBy('nama_kategori', 'asc')->get();
+                ?>
+                <?php if(request()->segment(1) == '' || request()->segment(1) == 'beranda'): ?>
+                    <!-- category nav -->
+                    <div class="category-nav">
+                        <span class="category-header">Kategori <i class="fa fa-list"></i></span>
+                        <ul class="category-list">
+                            <?php $__currentLoopData = $kategori; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><a href="<?php echo e(route('produk.kategori', $row->id)); ?>">
+                                    <?php echo e($row->nama_kategori); ?>
+
+                                </a></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <div class="category-nav show-on-click">
+                        <span class="category-header">Kategori
+                            <i class="fa fa-list"></i>
+                        </span>
+                        <ul class="category-list">
+                            <?php $__currentLoopData = $kategori; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><a href="<?php echo e(route('produk.kategori', $row->id)); ?>">
+                                    <?php echo e($row->nama_kategori); ?>
+
+                                </a></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                    </div>
+                    <!-- /category nav -->
+                <?php endif; ?>
+
+                <!-- menu nav -->
+                <div class="menu-nav">
+                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                    <ul class="menu-list">
+                        <li><a href="<?php echo e(route('beranda')); ?>">Beranda</a></li>
+                        <li><a href="<?php echo e(route('produk.all')); ?>">Produk</a></li>
+                        <li><a href="#">Lokasi</a></li>
+                        <li><a href="#">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+                <!-- menu nav -->
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /NAVIGATION -->
+    <?php if(request()->segment(1) == '' || request()->segment(1) == 'beranda'): ?>
+        <!-- HOME -->
+        <div id="home">
+            <!-- container -->
+            <div class="container">
+                <!-- home wrap -->
+                <div class="home-wrap">
+                    <!-- home slick -->
+                    <div id="home-slick">
+                        <!-- banner -->
+                        <div class="banner banner-1">
+                            <img src="<?php echo e(asset('frontend/banner/img_slide01.jpg')); ?>" alt="">
+                            <div class="banner-caption text-center">
+                                <h1>Jajanan Tradisional</h1>
+                                <h3 class="font-weak" style="color: 30323a">Khas Makanan Indonesia</h3>
+                                <button class="primary-btn">Pesan Sekarang</button>
+                            </div>
+                        </div>
+                        <!-- /banner -->
+
+                        <!-- banner -->
+                        <div class="banner banner-1">
+                            <img src="<?php echo e(asset('frontend/banner/img_slide02.jpg')); ?>" alt="">
+                            <div class="banner-caption">
+                                <h1 class="primary-color">Khas Makanan Indonesia<br><span class="white-color font-weak">Jajanan Tradisional</span></h1>
+                                <button class="primary-btn">Pesan Sekarang</button>
+                            </div>
+                        </div>
+                        <!-- /banner -->
+
+                        <!-- banner -->
+                        <div class="banner banner-1">
+                            <img src="<?php echo e(asset('frontend/banner/img_slide03.jpg')); ?>" alt="">
+                            <div class="banner-caption">
+                                <h1 class="" style="color: 30323a"> Khas Makanan <span>Indonesia</span></h1>
+                                <button class="primary-btn">Pesan Sekarang</button>
+                            </div>
+                        </div>
+                        <!-- /banner -->
+                    </div>
+                    <!-- /home slick -->
+                </div>
+                <!-- /home wrap -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /HOME -->
+    <?php endif; ?>
+    
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- ASIDE -->
+                <div id="aside" class="col-md-3">
+                    <!-- aside widget -->
+                    <div class="aside">
+                        <h3 class="aside-title">Filter Kategori</h3>
+                        <ul class="list-links">
+                            <?php $__currentLoopData = $kategori; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><a href="<?php echo e(route('produk.kategori', $row->id)); ?>">
+                                    <?php echo e($row->nama_kategori); ?>
+
+                                </a></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                    </div>
+                    <!-- /aside widget -->
+                </div>
+                <!-- /ASIDE -->
+
+                <!-- MAIN -->
+                <div id="main" class="col-md-9">
+                    <!-- store top filter -->
+                    <!-- /store top filter -->
+
+                    
+                    <?php echo $__env->yieldContent('content'); ?>
+                    
+
+                    <!-- store bottom filter -->
+
+                    <!-- /store bottom filter -->
+                </div>
+                <!-- /MAIN -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
+
+    <!-- FOOTER -->
+    <footer id="footer" class="section section-grey">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- footer widget -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="footer">
+                        <!-- footer logo -->
+                        <div class="footer-logo">
+                            <a class="logo" href="#">
+                                <img src="./img/logo.png" alt="">
+                            </a>
+                        </div>
+                        <!-- /footer logo -->
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+
+                        <!-- footer social -->
+                        <ul class="footer-social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                        <!-- /footer social -->
+                    </div>
+                </div>
+                <!-- /footer widget -->
+
+                <!-- footer widget -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-header">My Account</h3>
+                        <ul class="list-links">
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /footer widget -->
+
+                <div class="clearfix visible-sm visible-xs"></div>
+
+                <!-- footer widget -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-header">Customer Service</h3>
+                        <ul class="list-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Shiping & Return</a></li>
+                            <li><a href="#">Shiping Guide</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /footer widget -->
+
+                <!-- footer subscribe -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-header">Stay Connected</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                        <form>
+                            <div class="form-group">
+                                <input class="input" placeholder="Enter Email Address">
+                            </div>
+                            <button class="primary-btn">Join Newslatter</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /footer subscribe -->
+            </div>
+            <!-- /row -->
+            <hr>
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <!-- footer copyright -->
+                    <div class="footer-copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <!-- /footer copyright -->
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </footer>
+    <!-- /FOOTER -->
+
+    <!-- jQuery Plugins -->
+    <script src="<?php echo e(asset('frontend/js/jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/slick.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/nouislider.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/jquery.zoom.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/main.js')); ?>"></script>
+
+</body>
+
+</html><?php /**PATH /var/www/html/laravel10/TokoOnline/resources/views/v_layouts/app.blade.php ENDPATH**/ ?>

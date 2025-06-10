@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('kurir')->nullable();
             $table->string('layanan_ongkir')->nullable();
             $table->string('biaya_ongkir')->nullable();
-            $table->string('estimasi ongkir')->nullable();
+            $table->string('estimasi_ongkir')->nullable();
             $table->integer('total_berat')->nullable();
             $table->double('total_harga');
             $table->text('alamat')->nullable();
