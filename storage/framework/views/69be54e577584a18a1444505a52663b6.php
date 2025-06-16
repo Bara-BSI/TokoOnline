@@ -142,8 +142,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const originCityCode = 115; // ganti di sini untuk kode kota asal
-            const originCityName = 'Depok'; // ganti di sini untuk nama kota asal
+            const originCityCode = 419; // 115 ganti di sini untuk kode kota asal
+            const originCityName = 'Sleman'; // Depok ganti di sini untuk nama kota asal
 
             document.getElementById('city_origin').value = originCityCode;
             document.getElementById('city_origin_name').value = originCityName;

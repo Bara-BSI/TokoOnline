@@ -113,3 +113,11 @@ Route::get('/cek-ongkir', function() {
 Route::get('/provinces', [RajaOngkirController::class, 'getProvinces']);
 Route::get('/cities', [RajaOngkirController::class, 'getCities']);
 Route::post('/cost', [RajaOngkirController::class, 'getCost']);
+
+// Route untuk Order
+Route::post('/midtrans-callback', [OrderController::class, 'callback']);
+Route::get('/order/complete', [OrderController::class, 'complete'])->name('order.complete');
+
+// Route history
+Route::get('history', [OrderController::class, 'orderHistory'])->name('order.history');
+Route::get('order/invoice/{id}', [OrderController::class, 'invoiceFrontend'])->name('order.invoice');

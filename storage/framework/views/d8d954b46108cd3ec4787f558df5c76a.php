@@ -118,5 +118,29 @@
             <?php endif; ?>
         </div>
     </div>
+    <script>
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function() {
+            window.snap.pay('<?php echo e($snapToken); ?>', {
+                onSuccess: function(result) {
+                    alert("payment success!");
+                    console.log(result);
+                    window.location.href = "<?php echo e(route('order.complete')); ?>";
+                },
+                onPending: function(result) {
+                    alert("waiting for your payment!");
+                    console.log(result);
+                },
+                onError: function(result) {
+                    alert("payment failed!");
+                    console.log(result);
+                },
+                onClose: function(result) {
+                    alert("you closed the popup without finishing the payment!");
+                    console.log(result);
+                }
+            });
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('v_layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/laravel10/TokoOnline/resources/views/v_order/select_payment.blade.php ENDPATH**/ ?>

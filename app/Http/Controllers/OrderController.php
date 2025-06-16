@@ -8,6 +8,8 @@ use App\Models\OrderItem;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Midtrans\Snap;
+use Midtrans\Config;
 
 class OrderController extends Controller
 {
@@ -164,12 +166,97 @@ class OrderController extends Controller
             $totalHarga += $item->harga * $item->quantity;
         }
 
+        // Tambahkan biaya ongkir ke total harga
+        $grossAmount = $totalHarga + $order->biaya_ongkir;
+
+        // Midtrans configuration
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = false;
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+
+        // Generate unique order_id
+        $orderId = $order->id . '-' . time();
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $orderId,
+                'gross_amount' => (int) $grossAmount, // Pastikan gross_amount adalah integer
+            ],
+            'customer_details' => [
+                'first_name' => $customer->nama,
+                'email' => $customer->email,
+                'phone' => $customer->hp,
+            ],
+        ];
+        
+        $snapToken = Snap::getSnapToken($params);
         // Kirim data order dan snapToken ke view
         return view('v_order.select_payment', [
             'order' => $order,
             'origin' => $origin,
             'originName' => $originName,
-            // 'snapToken' => $snapToken
+            'snapToken' => $snapToken
+        ]);
+    }
+
+    public function callback(Request $request)
+    {
+        // dd($request->all())
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        if ($hashed == $request->signature_key) {
+            $order = Order::find($request->order_id);
+            if ($order) {
+                $order->update(['status' => 'Paid']);
+            }
+        }
+    }
+
+    public function complete()
+    {
+        // Dapatkan customer yang login
+        $customer = Auth::user();
+
+        // Cari order dengan status 'pending' milik customer tersebut
+        $order = Order::where('customer_id', $customer->customer->id)->where('status', 'pending')->first();
+
+        if ($order) {
+            // Update status order menjadi 'Paid'
+            $order->status = 'Paid';
+            $order->save();
+        }
+
+        // Redirect ke halaman riwayat dengan pesan sukses
+        return redirect()->route('order.history')->with('success', 'Checkout berhasil.');
+    }
+
+    // public function complete() // Untuk kondisi sudah memiliki domain
+    // {
+    //     // Logika untuk halaman setelah pembayaran berhasil
+    //     return redirect()->route('order.history')->with('success', 'Checkout berhasil');
+    // }
+
+    public function orderHistory()
+    {
+        $customer = Customer::where('user_id', Auth::id())->first();
+        // $orders = Order::where('customer_id', $customer->id)->where('status', 'complete')->get();
+        $statuses = ['Paid', 'Kirim', 'Selesai'];
+        $orders = Order::where('customer_id', $customer->id)
+            ->whereIn('status', $statuses)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('v_order.history', compact('orders'));
+    }
+
+    public function invoiceFrontend($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->load('orderItems.produk');
+        return view('v_order.invoice', [
+            'judul' => 'Pesanan',
+            'subJudul' => 'Pesanan Proses',
+            'order' => $order,
         ]);
     }
 }
