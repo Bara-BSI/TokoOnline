@@ -259,4 +259,70 @@ class OrderController extends Controller
             'order' => $order,
         ]);
     }
+
+    // Manajemen pesanan
+    public function statusProses()
+    {
+        // backend
+        $order = Order::whereIn('status', ['Paid', 'Kirim'])->orderBy('id', 'desc')->get();
+        return view('backend.v_pesanan.proses', [
+            'judul' => 'Pesanan',
+            'subJudul' => 'Pesanan Proses',
+            'index' => $order
+        ]);
+    }
+
+    public function statusSelesai()
+    {
+        // backend
+        $order = Order::where('status', 'Selesai')->orderBy('id', 'desc')->get();
+        return view('backend.v_pesanan.selesai', [
+            'judul' => 'Pesanan',
+            'subJudul' => 'Pesanan Proses',
+            'judul' => 'Data Transaksi',
+            'index' => $order
+        ]);
+    }
+
+    public function statusDetail($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('backend.v_pesanan.detail', [
+            'judul' => 'Pesanan',
+            'subJudul' => 'Pesanan Proses',
+            'judul' => 'Data Transaksi',
+            'order' => $order
+        ]);
+    }
+
+    public function statusUpdate(Request $request, string $id)
+    {
+        $order = Order::findOrFail($id);
+        $rules = [
+            'alamat' => 'required',
+        ];
+        if ($request->status != $order->status) {
+            $rules['status'] = 'required';
+        }
+        if ($request->noresi != $order->noresi) {
+            $rules['noresi'] = 'required';
+        }
+        if ($request->pos != $order->pos) {
+            $rules['pos'] = 'required';
+        }
+        $validatedData = $request->validate($rules);
+        Order::where('id', $id)->update($validatedData);
+        return redirect()->route('pesanan.proses')->with('success', 'Data berhasil diperbaharui');
+    }
+
+    public function invoiceBackend($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('backend.v_pesanan.invoice', [
+            'judul' => 'Pesanan',
+            'subJudul' => 'Pesanan Proses',
+            'judul' => 'Data Transaksi',
+            'order' => $order
+        ]);
+    }
 }

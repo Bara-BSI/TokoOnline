@@ -121,3 +121,9 @@ Route::get('/order/complete', [OrderController::class, 'complete'])->name('order
 // Route history
 Route::get('history', [OrderController::class, 'orderHistory'])->name('order.history');
 Route::get('order/invoice/{id}', [OrderController::class, 'invoiceFrontend'])->name('order.invoice');
+
+// Route manajemen pesanan
+Route::get('/pesanan/proses', [OrderController::class, 'statusProses'])->name('pesanan.proses');
+Route::get('/pesanan/detail/{id}', [OrderController::class, 'statusDetail'])->name('pesanan.detail');
+Route::put('/pesanan/update/{id}', [OrderController::class, 'statusUpdate'])->name('pesanan.update');
+Route::get('/pesanan/invoice/{id}', [OrderController::class, 'invoiceBackend'])->name('pesanan.invoice');

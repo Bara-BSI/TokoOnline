@@ -9,12 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('image/icon_univ_bsi.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo e(asset('image/icon_univ_bsi.png')); ?>">
     <title>Toko Online</title>
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('backend/extra-libs/multicheck/multicheck.css') }}">
-    <link href="{{ asset('backend/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
-    <link href="{{ asset('backend/dist/css/style.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('backend/extra-libs/multicheck/multicheck.css')); ?>">
+    <link href="<?php echo e(asset('backend/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('backend/dist/css/style.min.css')); ?>" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,19 +48,19 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="{{ route('backend.beranda') }}">
+                    <a class="navbar-brand" href="<?php echo e(route('backend.beranda')); ?>">
                         <!-- Logo icon -->
                         <b class="logo-icon p-l-10">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="{{ asset('image/icon_univ_bsi.png') }}" alt="homepage" style="height: 25px" class="light-logo" />
+                            <img src="<?php echo e(asset('image/icon_univ_bsi.png')); ?>" alt="homepage" style="height: 25px" class="light-logo" />
                            
                         </b>
                         <!--End Logo icon -->
                          <!-- Logo text -->
                         <span class="logo-text">
                              <!-- dark Logo text -->
-                             <img src="{{ asset('image/logo_text.png') }}" alt="homepage" class="light-logo" />
+                             <img src="<?php echo e(asset('image/logo_text.png')); ?>" alt="homepage" class="light-logo" />
                             
                         </span>
                         <!-- Logo icon -->
@@ -92,26 +92,11 @@
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
-                             <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li> --}}
+                        
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        {{-- <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
-                            </form>
-                        </li> --}}
+                        
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -120,74 +105,14 @@
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-bell font-24"></i>
-                            </a>
-                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li> --}}
+                        
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- ============================================================== -->
                         <!-- ============================================================== -->
                         <!-- Messages -->
                         <!-- ============================================================== -->
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="">
-                                             <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Event today</h5> 
-                                                        <span class="mail-desc">Just a reminder that event</span> 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Settings</h5> 
-                                                        <span class="mail-desc">You can customize this template</span> 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Pavan kumar</h5> 
-                                                        <span class="mail-desc">Just see the my admin!</span> 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="link border-top">
-                                                <div class="d-flex no-block align-items-center p-10">
-                                                    <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
-                                                    <div class="m-l-10">
-                                                        <h5 class="m-b-0">Luanch Admin</h5> 
-                                                        <span class="mail-desc">Just see the my new admin!</span> 
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
+                        
                         <!-- ============================================================== -->
                         <!-- End Messages -->
                         <!-- ============================================================== -->
@@ -197,26 +122,22 @@
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic d-flex align-items-center" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @if (Auth::user()->foto)
-                                <img src="{{ asset('storage/img-user/' . Auth::user()->foto) }}" alt="user" class="rounded-circle" width="31">
-                                @else
-                                <img src="{{ asset('storage/img-user/img-default.jpg') }}" alt="user" class="rounded-circle" width="31">
-                                @endif
+                                <?php if(Auth::user()->foto): ?>
+                                <img src="<?php echo e(asset('storage/img-user/' . Auth::user()->foto)); ?>" alt="user" class="rounded-circle" width="31">
+                                <?php else: ?>
+                                <img src="<?php echo e(asset('storage/img-user/img-default.jpg')); ?>" alt="user" class="rounded-circle" width="31">
+                                <?php endif; ?>
                             </a>    
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="{{ route('backend.user.edit', Auth::user()->id) }}">
+                                <a class="dropdown-item" href="<?php echo e(route('backend.user.edit', Auth::user()->id)); ?>">
                                     <i class="ti-user m-r-5 m-l-5"></i> Profil Saya
                                 </a>
-                                {{-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
-                                <div class="dropdown-divider"></div> --}}
+                                
                                 <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('keluar-app').submit();">
                                     <i class="fa fa-power-off m-r-5 m-l-5"></i> Keluar
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                {{-- <div class="p-l-30 p-10"><a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a></div> --}}
+                                
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -238,20 +159,20 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('backend.beranda') }}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Beranda</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('backend.user.index') }}" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">User</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo e(route('backend.beranda')); ?>" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Beranda</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo e(route('backend.user.index')); ?>" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">User</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('backend.customer.index') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Customer</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo e(route('backend.customer.index')); ?>" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Customer</span></a></li>
                         
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-shopping"></i><span class="hide-menu">Data Produk </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="{{ route('backend.kategori.index') }}" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Kategori </span></a></li>
-                                <li class="sidebar-item"><a href="{{ route('backend.produk.index') }}" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Produk </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo e(route('backend.kategori.index')); ?>" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Kategori </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo e(route('backend.produk.index')); ?>" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Produk </span></a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-id-card"></i><span class="hide-menu">Data Pesanan </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="{{ route('pesanan.proses') }}" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Pesanan </span></a></li>
+                                <li class="sidebar-item"><a href="<?php echo e(route('pesanan.proses')); ?>" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Pesanan </span></a></li>
                             </ul>
                         </li>
                         <li class="sidebar-item">
@@ -260,43 +181,20 @@
                             </a>
                             <ul class="collapse first-level" aria-expanded="false">
                                 <li class="sidebar-item">
-                                    <a href="{{ route('backend.laporan.formuser') }}" class="sidebar-link">
+                                    <a href="<?php echo e(route('backend.laporan.formuser')); ?>" class="sidebar-link">
                                         <i class="mdi mdi-chevron-right"></i>
                                         <span class="hide-menu">User</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
-                                    <a href="{{ route('backend.laporan.formproduk') }}" class="sidebar-link">
+                                    <a href="<?php echo e(route('backend.laporan.formproduk')); ?>" class="sidebar-link">
                                         <i class="mdi mdi-chevron-right"></i>
                                         <span class="hide-menu">Produk</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-elements.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Elements</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="index2.html" class="sidebar-link"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"> Dashboard-2 </span></a></li>
-                                <li class="sidebar-item"><a href="pages-gallery.html" class="sidebar-link"><i class="mdi mdi-multiplication-box"></i><span class="hide-menu"> Gallery </span></a></li>
-                                <li class="sidebar-item"><a href="pages-calendar.html" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Calendar </span></a></li>
-                                <li class="sidebar-item"><a href="pages-invoice.html" class="sidebar-link"><i class="mdi mdi-bulletin-board"></i><span class="hide-menu"> Invoice </span></a></li>
-                                <li class="sidebar-item"><a href="pages-chat.html" class="sidebar-link"><i class="mdi mdi-message-outline"></i><span class="hide-menu"> Chat Option </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-key"></i><span class="hide-menu">Authentication </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="authentication-login.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Login </span></a></li>
-                                <li class="sidebar-item"><a href="authentication-register.html" class="sidebar-link"><i class="mdi mdi-all-inclusive"></i><span class="hide-menu"> Register </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-alert"></i><span class="hide-menu">Errors </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="error-403.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 403 </span></a></li>
-                                <li class="sidebar-item"><a href="error-404.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 404 </span></a></li>
-                                <li class="sidebar-item"><a href="error-405.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 405 </span></a></li>
-                                <li class="sidebar-item"><a href="error-500.html" class="sidebar-link"><i class="mdi mdi-alert-octagon"></i><span class="hide-menu"> Error 500 </span></a></li>
-                            </ul>
-                        </li> --}}
+                        
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -316,7 +214,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">{{ $judul }}</h4>
+                        <h4 class="page-title"><?php echo e($judul); ?></h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -338,9 +236,9 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                {{-- @yieldAwal --}}
-                @yield('content')
-                {{-- @yieldAkhir --}}
+                
+                <?php echo $__env->yieldContent('content'); ?>
+                
                 
 
                 <!-- ============================================================== -->
@@ -377,23 +275,23 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="{{ asset('backend/libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="<?php echo e(asset('backend/libs/jquery/dist/jquery.min.js')); ?>"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('backend/libs/popper.js/dist/umd/popper.min.js') }}"></script>
-    <script src="{{ asset('backend/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="<?php echo e(asset('backend/libs/popper.js/dist/umd/popper.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('backend/libs/bootstrap/dist/js/bootstrap.min.js')); ?>"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{ asset('backend/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('backend/extra-libs/sparkline/sparkline.js') }}"></script>
+    <script src="<?php echo e(asset('backend/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('backend/extra-libs/sparkline/sparkline.js')); ?>"></script>
     <!--Wave Effects -->
-    <script src="{{ asset('backend/dist/js/waves.js') }}"></script>
+    <script src="<?php echo e(asset('backend/dist/js/waves.js')); ?>"></script>
     <!--Menu sidebar -->
-    <script src="{{ asset('backend/dist/js/sidebarmenu.js') }}"></script>
+    <script src="<?php echo e(asset('backend/dist/js/sidebarmenu.js')); ?>"></script>
     <!--Custom JavaScript -->
-    <script src="{{ asset('backend/dist/js/custom.min.js') }}"></script>
+    <script src="<?php echo e(asset('backend/dist/js/custom.min.js')); ?>"></script>
     <!-- this page js -->
-    <script src="{{ asset('backend/extra-libs/multicheck/datatable-checkbox-init.js') }}"></script>
-    <script src="{{ asset('backend/extra-libs/multicheck/jquery.multicheck.js') }}"></script>
-    <script src="{{ asset('backend/extra-libs/DataTables/datatables.min.js') }}"></script>
+    <script src="<?php echo e(asset('backend/extra-libs/multicheck/datatable-checkbox-init.js')); ?>"></script>
+    <script src="<?php echo e(asset('backend/extra-libs/multicheck/jquery.multicheck.js')); ?>"></script>
+    <script src="<?php echo e(asset('backend/extra-libs/DataTables/datatables.min.js')); ?>"></script>
     <script>
         /****************************************
          *       Basic Table                   *
@@ -401,27 +299,27 @@
         $('#zero_config').DataTable();
     </script>
 
-    {{-- form keluar app --}}
-    <form id="keluar-app" action="{{ route('backend.logout') }}" method="post" class="d-none">
-        @csrf
+    
+    <form id="keluar-app" action="<?php echo e(route('backend.logout')); ?>" method="post" class="d-none">
+        <?php echo csrf_field(); ?>
     </form>
-    {{-- form keluar app end --}}
+    
 
-    {{-- sweetalert --}}
-    <script src="{{ asset('sweetalert/sweetalert2.all.min.js') }}"></script>
-    {{-- sweetalert End --}}
+    
+    <script src="<?php echo e(asset('sweetalert/sweetalert2.all.min.js')); ?>"></script>
+    
 
-    {{-- konfirmasi success --}}
-    @if (session('success'))
+    
+    <?php if(session('success')): ?>
         <script>
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
-                text: "{{ session('success') }}"
+                text: "<?php echo e(session('success')); ?>"
             })
         </script>
-    @endif
-    {{-- konfirmasi success End --}}
+    <?php endif; ?>
+    
 
     <script type="text/javascript">
         // Konfirmasi delete
@@ -462,8 +360,8 @@
             }
         }
     </script>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    {{-- <script src="htttps://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script> --}}
+    <script src="<?php echo e(asset('ckeditor/ckeditor.js')); ?>"></script>
+    
     <script>
         ClassicEditor
             .create(document.querySelector('#ckeditor'))
@@ -474,4 +372,4 @@
 
 </body>
 
-</html>
+</html><?php /**PATH /var/www/html/laravel10/TokoOnline/resources/views/backend/v_layouts/app.blade.php ENDPATH**/ ?>
